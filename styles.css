@@ -21,6 +21,8 @@ body{
 
     display: flex;
     align-items: row;
+
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.3);
 }
 .area-pokemons{
     padding: 15px;
