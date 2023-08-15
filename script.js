@@ -15,6 +15,26 @@ let spATK = document.querySelector('.sp-atk-content')
 let spDEF = document.querySelector('.sp-def-content')
 let speed = document.querySelector('.speed-content')
 
+// Seleciona os Elementos para mobile
+let mobileDetalhes = document.querySelector('.mobile-detalhes')
+let detalhesTotal = document.querySelector('.conteudo-mobile')
+let nomeMobile = document.querySelector('.nome-mobile')
+let imagemMobile = document.querySelector('.imagem-mobile')
+let idMobile = document.querySelector('.id-mobile-content')
+let tipoMobile = document.querySelector('.tipo-mobile-content')
+let segundoTipoArea = document.querySelector('.segundo-tipo-mobile')
+let segundoTipoMobile = document.querySelector('.segundo-tipo-mobile-content')
+let hpMobile = document.querySelector('.hp-content-mobile')
+let atkMobile = document.querySelector('.atk-content-mobile')
+let defMobile = document.querySelector('.def-content-mobile')
+let spATKMobile = document.querySelector('.sp-atk-content-mobile')
+let spDEFMobile = document.querySelector('.sp-def-content-mobile')
+let speedMobile = document.querySelector('.speed-content-mobile')
+let closeButton = document.querySelector('.closeButtonMobile')
+
+// Verifica o tamanho da tela para adaptar a exibição
+let tamanhoTela = window.screen.width; 
+
 // Função para deixar a primeira letra do nome maiuscula
 function maiuscula(nome) {
     return nome.charAt(0).toUpperCase() + nome.substr(1);
@@ -69,47 +89,102 @@ const pokemons = async () => {
             pokeCard.appendChild(pokeButton);
 
             // Adicionando evento de click no botão de detalhes, para informações mais especificas do pokemon escolhido
-            pokeButton.addEventListener('click', async () => {
-                // Requisição para a PokeAPI de dados especificos do pokemon escolhido
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}/`);
-                
-                // Armazena os dados especificos 
-                const info = await response.json();
-                
-                // Define o display do tipo secundario com "none" para somente exibi-lo quando o pokemon tiver mais de um tipo
-                segundoTipo.style.display = "none"
-                
-                // Deixa o nome do pokemon recebido com a primeira letra maiuscula
-                let nome = maiuscula(pokemon.name)
 
-                // Define o valor da area de nome do pokemon como o nome do pokemon escolhido
-                nomePokemon.innerText = nome;
+            if(tamanhoTela > 980){
+                pokeButton.addEventListener('click', async () => {
+                    // Requisição para a PokeAPI de dados especificos do pokemon escolhido
+                    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}/`);
+                    
+                    // Armazena os dados especificos 
+                    const info = await response.json();
+                    
+                    // Define o display do tipo secundario com "none" para somente exibi-lo quando o pokemon tiver mais de um tipo
+                    segundoTipo.style.display = "none"
+                    
+                    // Deixa o nome do pokemon recebido com a primeira letra maiuscula
+                    let nome = maiuscula(pokemon.name)
+    
+                    // Define o valor da area de nome do pokemon como o nome do pokemon escolhido
+                    nomePokemon.innerText = nome;
+    
+                    // Cria, define e Exibe na tela a imagem aumentada do pokemon escolhido
+                    const imagemGrande = document.createElement('img');
+                    imagemGrande.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numeroPokemon}.png`;
+                    imagePokemon.innerHTML = '';
+                    imagePokemon.appendChild(imagemGrande);
+    
+                    // Mostra o numero do pokemon na pokedex
+                    pokeID.innerText = `#${info.id}`
+    
+                    // Exibe o tipo do pokemon e caso tenha um segundo tipo, exibe ele tambem 
+                    tipoSpan.innerText = `${maiuscula(info.types[0].type.name)}`
+                    if(info.types.length > 1){
+                        segundoTipo.style.display = "flex"
+                        segundoTipoSpan.innerText = `${maiuscula(info.types[1].type.name)}`
+                    }
+    
+                    // Exibe os status do pokemon escolhido
+                    hp.innerText = `${info.stats[0].base_stat}`
+                    atk.innerText = `${info.stats[1].base_stat}`
+                    def.innerText = `${info.stats[2].base_stat}`
+                    spATK.innerText = `${info.stats[3].base_stat}`
+                    spDEF.innerText = `${info.stats[4].base_stat}`
+                    speed.innerText = `${info.stats[5].base_stat}`
+                })
+            }else if(tamanhoTela < 980){
+                pokeButton.addEventListener('click', async () => {
+                    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}/`);
+                    
+                    // Armazena os dados especificos 
+                    const info = await response.json();
 
-                // Cria, define e Exibe na tela a imagem aumentada do pokemon escolhido
-                const imagemGrande = document.createElement('img');
-                imagemGrande.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numeroPokemon}.png`;
-                imagePokemon.innerHTML = '';
-                imagePokemon.appendChild(imagemGrande);
+                    segundoTipoArea.style.display = "none"
 
-                // Mostra o numero do pokemon na pokedex
-                pokeID.innerText = `#${info.id}`
+                    let nome = maiuscula(pokemon.name);
+                    nomeMobile.innerHTML = `${nome}`
+                    
+                    let image = document.createElement('img');
 
-                // Exibe o tipo do pokemon e caso tenha um segundo tipo, exibe ele tambem 
-                tipoSpan.innerText = `${maiuscula(info.types[0].type.name)}`
-                if(info.types.length > 1){
-                    segundoTipo.style.display = "flex"
-                    segundoTipoSpan.innerText = `${maiuscula(info.types[1].type.name)}`
-                }
+                    image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numeroPokemon}.png`                
+                    imagemMobile.appendChild(image)
 
-                // Exibe os status do pokemon escolhido
-                hp.innerText = `${info.stats[0].base_stat}`
-                atk.innerText = `${info.stats[1].base_stat}`
-                def.innerText = `${info.stats[2].base_stat}`
-                spATK.innerText = `${info.stats[3].base_stat}`
-                spDEF.innerText = `${info.stats[4].base_stat}`
-                speed.innerText = `${info.stats[5].base_stat}`
-            })
+                    idMobile.innerText = `${numeroPokemon}`
+                    tipoMobile.innerText = `${maiuscula(info.types[0].type.name)}`
 
+                    if(info.types.length > 1){
+                        segundoTipoArea.style.display = "flex"
+                        segundoTipoMobile.innerText = `${maiuscula(info.types[1].type.name)}`
+                    }
+
+                    hpMobile.innerText = `${info.stats[0].base_stat}`
+                    atkMobile.innerText = `${info.stats[1].base_stat}`
+                    defMobile.innerText = `${info.stats[2].base_stat}`
+                    spATKMobile.innerText = `${info.stats[3].base_stat}`
+                    spDEFMobile.innerText = `${info.stats[4].base_stat}`
+                    speedMobile.innerText = `${info.stats[5].base_stat}`
+
+                    mobileDetalhes.style.display = "flex"
+                    setTimeout(()=>{
+                        mobileDetalhes.style.width = "100vw"
+                        detalhesTotal.style.display = "flex"
+                        setTimeout(()=>{
+                            detalhesTotal.style.opacity = "1"
+                        }, 200)
+                    }, 200)
+                    
+                })
+
+                closeButton.addEventListener('click', () => {
+                    detalhesTotal.style.opacity = "0"
+                    setTimeout(()=>{
+                        mobileDetalhes.style.width = "0px"
+                        setTimeout(()=>{
+                            mobileDetalhes.style.display = "none"
+                        }, 400)
+                    },200)
+                    imagemMobile.innerHTML = ""
+                })
+            }
         };
 
     } catch (error) {
@@ -117,4 +192,5 @@ const pokemons = async () => {
     };
 };
 
+console.log(tamanhoTela)
 pokemons()

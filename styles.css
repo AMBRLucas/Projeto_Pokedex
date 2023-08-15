@@ -200,3 +200,169 @@ span{
     color: cadetblue;
     font-weight: 800;
 } 
+
+.mobile-detalhes{
+    display: none;
+}
+
+@media screen and (max-width: 980px) {
+    body{
+        background-color: rgb(143, 59, 59);
+    }
+    .pokeButton{
+        background-color: rgb(143, 59, 59);
+        border: 1px solid rgb(143, 59, 59);
+    }
+    .pokeButton:hover{
+        color: rgb(143, 59, 59);
+        border: 1px solid rgb(143, 59, 59);
+    }
+    .titulo{
+        color: rgb(143, 59, 59);
+    }
+    .nome-pokemon{
+        color: rgb(143, 59, 59);
+    }
+    .imagem-pokemon{
+        background-color: rgb(143, 59, 59)
+    }
+    .id{
+        color: rgb(143, 59, 59);
+        font-weight: 800;
+    }
+    
+    .id-pokemon{
+        color: black;
+        font-weight: 500;
+    }
+    
+    .tipo{
+        color: rgb(143, 59, 59);
+        font-weight: 800;
+    }
+    
+    .tipo-pokemon{
+        color: black;
+        font-weight: 500;
+    }
+    
+    .segundoTipo{
+    
+        color: rgb(143, 59, 59);
+        font-weight: 800;
+    }
+    
+    .segundoTipo-pokemon{
+        color: black;
+        font-weight: 500;
+    }
+    .hp, .atk, .def, .sp-atk, .sp-def, .speed{
+        color: rgb(143, 59, 59);
+        font-weight: 800;
+    } 
+
+    .detalhes-pokemon{
+        display: none;
+    }
+
+    .corpo-principal{
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0px;
+    }
+
+    .pokeCard{
+        width: 160px;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .mobile-detalhes{
+        background-color: #FFF;
+        display: none;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        height: 100vh;
+        padding: 20px;
+        width: 0;
+        transition: 0.7s;
+    }
+
+    .conteudo-mobile{
+        display: none;
+        flex-direction: column;
+        opacity: 0;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        transition: 0.6s;
+    }
+
+    .nome-mobile{
+        color: rgb(143, 59, 59);
+        font-size: 28px;
+        font-weight: 800;
+    }
+
+    .imagem-mobile{
+        margin-top: 65px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgb(143, 59, 59);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .imagem-mobile img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .informacoes-mobile{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .id-mobile, .tipo-mobile, .segundo-tipo-mobile{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        color: rgb(143, 59, 59);
+        font-weight: 800;
+        justify-content: space-around;
+    }
+
+    .status-mobile{
+        margin-top: 30px;
+    }
+
+    .firstRow-mobile, .secondRow-mobile, .thirdRow-mobile{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .closeButtonMobile{
+        background-color: rgb(143, 59, 59);
+        color: #FFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-top: 100px;
+        border: 1px solid rgb(143, 59, 59);
+        transition: 0.6s;
+    }
+
+    .closeButtonMobile:hover{
+        color: rgb(143, 59, 59);
+        background-color: #FFF;
+    }
+}
